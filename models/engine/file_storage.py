@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """Module for file storage"""
+import datetime
 import json
 import os
 
 
 class FileStorage:
     """A class for data storage, retrieving and operations"""
-    __file_path = ""
+    __file_path = "file.json"
     __objects = dict()
 
     def all(self):
@@ -16,7 +17,7 @@ class FileStorage:
     def new(self, obj):
         """A method that sets in obj"""
         key = obj.__class__.__name__ + "." + obj.id
-        FileStorage.__objects[key] = id
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """A method that serializes __objects to the JSON file"""
@@ -31,12 +32,11 @@ class FileStorage:
         """A method that deserializes the JSON file to __objects"""
         if os.path.exists(FileStorage.__file_path):
             with open(
-                FileStorage.__file_path, "r", encoding="utf-8")
-            as des_file:
+                FileStorage.__file_path, "r", encoding="utf-8") as des_file:
                 data = json.load(des_file)
                 FileStorage.__objects = data
-            else:
-                print()
+        else:
+            print()
 
     @staticmethod
     def classes():
@@ -50,7 +50,7 @@ class FileStorage:
         from models.review import Review
         return {
                     "BaseModel": BaseModel,
-                    "User: User,
+                    "User": User,
                     "City": City,
                     "Place": Place,
                     "Amenity": Amenity,

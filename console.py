@@ -28,6 +28,7 @@ class HBNBCommand(cmd.Cmd):
         """A help command to guide the user if there
         be any need for assistance on a particular function
         """
+        pass
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id."""
